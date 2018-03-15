@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My App</title>
+	<link rel="stylesheet" type="text/css" href="/css/indexStyle.css"  />
+</head>
+<body>
+	<div id="heroMainContainer" class="mainContainer">
+		<div id="heroListContainer" class="listContainer">
+			<% for(var i=0;i<heroes.length;i++) {%>
+			<div id="heroImageContainer" class="imgContainer">
+				<img src= <%="/images/"+heroes[i].name+".png" %> class="image">
+			</div>
+			<% } %>
+		</div>
+		<div id="heroDescription" class="detailContainer">
+		</div>
+	</div>
+</body>
+</html>
+

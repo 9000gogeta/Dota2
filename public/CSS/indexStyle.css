@@ -1,0 +1,23 @@
+.mainContainer{
+	width:820px;
+	height:500px;
+	margin:10px 10px 10px 10px;
+	padding:5px 5px 5px 5px;
+	position: relative;
+}
+.listContainer{
+	margin: 5px 5px 5px 5px;
+	padding: 3px 3px 3px 3px;
+	position: absolute;
+	background: black;
+}
+.imgContainer{
+	width: 59px;
+    height: 33px;
+    float: left;
+    margin: 2px;
+    padding: 2px;
+    background: black;
+}
+.image{
+}

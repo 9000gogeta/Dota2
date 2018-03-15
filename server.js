@@ -6,7 +6,7 @@ const mongoClient = require('mongodb').MongoClient;
 const fs = require('fs');
 const async = require('async');
 
-api_key = '700FB82E6669247765CE8996C33C8E88'
+api_key = <<<<<STEAM API-KEY>>>>>>>
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine','ejs')
@@ -15,7 +15,7 @@ app.use(express.static('public'))
 var first = true;
 var db;
 
-mongoClient.connect('mongodb://srini:srini94@ds263707.mlab.com:63707/dota2', (err,database) => {
+mongoClient.connect(<<<<MONGODB-URI>>>>>>, (err,database) => {
 	if (err) return console.log(err)
 	db = database.db('dota2')
 	app.listen(3000, () => {

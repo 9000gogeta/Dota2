@@ -23,7 +23,8 @@ var mongoDB = process.env.MONGODB_URI || 'mongodb://srini:narayan94@ds263707.mla
 mongoClient.connect(mongoDB, (err,database) => {
 	if (err) return console.log(err)
 	db = database.db('dota2')
-	app.listen(3000, () => {
+	var port = process.env.PORT || 3000;
+	app.listen(port, () => {
 		console.log('Mongo client connected')
 	})
 })

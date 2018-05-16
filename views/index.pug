@@ -1,0 +1,20 @@
+doctype HTML
+html
+	head
+		meta(charset='UTF-8')
+		title Dota 2 Tracker
+		link(rel='stylesheet' type='text/css' href='/css/indexStyle.css')
+	body
+		div(id='heroMainContainer' class='mainContainer')
+			div(id='heroListContainer' class='listContainer')
+			each hero in heroes
+				div(id='heroImageContainer' class='imgContainer')
+					img(src='/images/'+hero.name+'.png' class='image')
+			div(id='heroDescription' class='detailContainer')
+		div(id='itemMainContainer' class='mainContainer')
+			div(id='itemListContainer' class='listContainer')
+			each item in items
+				div(id='itemImageContainer' class='imgContainer')
+					img(src='/images/'+item.name+'.png' class='image')
+			div(id='itemDescription' class='detailContainer')
+		

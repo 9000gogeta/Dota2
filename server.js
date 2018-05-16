@@ -7,13 +7,14 @@ const fs = require('fs');
 const async = require('async');
 const compression = require('compression')
 const helmet = require('helmet')
+const pug = require('pug')
 
 api_key = '700FB82E6669247765CE8996C33C8E88'
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(compression());
 app.use(helmet());
-app.set('view engine','ejs')
+app.set('view engine','pug')
 app.use(express.static('public'))
 
 var first = true;
@@ -85,7 +86,7 @@ app.get('/', (req,res) => {
 	}
 	else{
 		getNames((name)=>{
-				res.render('index.ejs',{
+				res.render('index.pug',{
 					heroes:name[0],
 					items:name[1]
 				})

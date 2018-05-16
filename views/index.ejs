@@ -17,6 +17,17 @@
 		<div id="heroDescription" class="detailContainer">
 		</div>
 	</div>
+	<div id="itemMainContainer" class="mainContainer">
+		<div id="itemListContainer" class="listContainer">
+			<% for(var i=0;i<items.length;i++) {%>
+			<div id="itemImageContainer" class="imgContainer">
+				<img src= <%="/images/"+items[i].name+".png" %> class="image">
+			</div>
+			<% } %>
+		</div>
+		<div id="itemDescription" class="detailContainer">
+		</div>
+	</div>
 </body>
 </html>
 

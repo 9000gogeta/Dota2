@@ -5,8 +5,10 @@ const bodyParser = require('body-parser');
 const mongoClient = require('mongodb').MongoClient;
 const fs = require('fs');
 const async = require('async');
+const compression = require('compression')
+const helmet = require('helmet')
 
-api_key = <<<<<STEAM API-KEY>>>>>>>
+api_key = '700FB82E6669247765CE8996C33C8E88'
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine','ejs')
@@ -15,17 +17,17 @@ app.use(express.static('public'))
 var first = true;
 var db;
 
-mongoClient.connect(<<<<MONGODB-URI>>>>>>, (err,database) => {
+mongoClient.connect('mongodb://srini:narayan94@ds263707.mlab.com:63707/dota2', (err,database) => {
 	if (err) return console.log(err)
 	db = database.db('dota2')
 	app.listen(3000, () => {
-		console.log('Client connected')
+		console.log('Mongo client connected')
 	})
 })
 
-var minutes = 5, the_interval = minutes * 60 * 1000;
+const minutes = 2, the_interval = minutes * 60 * 1000;
 setInterval(() => {
-  console.log("Requesting Match data every 5 minutes");
+  console.log('Requesting Match data every ${minutes} minutes');
   request('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/v001?key='+api_key,{json:true},(err,res,body)=>{
   	if(err) return err;
   	async.each(body['result']['matches'],(item,callback)=>{
@@ -76,6 +78,7 @@ app.get('/', (req,res) => {
 		getNames((name)=>{
 				res.render('index.ejs',{
 					heroes:name[0],
+					items:name[1]
 				})
 		})
 	}

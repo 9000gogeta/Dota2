@@ -31,7 +31,7 @@ mongoClient.connect(mongoDB, (err,database) => {
 
 const minutes = 2, the_interval = minutes * 60 * 1000;
 setInterval(() => {
-  console.log('Requesting Match data every ${minutes} minutes');
+  console.log('Requesting Match data every '+minutes+' minutes');
   request('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/v001?key='+api_key,{json:true},(err,res,body)=>{
   	if(err) return err;
   	try{

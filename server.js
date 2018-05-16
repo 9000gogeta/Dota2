@@ -11,13 +11,16 @@ const helmet = require('helmet')
 api_key = '700FB82E6669247765CE8996C33C8E88'
 
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(compression());
+app.use(helmet());
 app.set('view engine','ejs')
 app.use(express.static('public'))
 
 var first = true;
 var db;
+var mongoDB = process.env.MONGODB_URI || 'mongodb://srini:narayan94@ds263707.mlab.com:63707/dota2';
 
-mongoClient.connect('mongodb://srini:narayan94@ds263707.mlab.com:63707/dota2', (err,database) => {
+mongoClient.connect(mongoDB, (err,database) => {
 	if (err) return console.log(err)
 	db = database.db('dota2')
 	app.listen(3000, () => {
@@ -30,14 +33,19 @@ setInterval(() => {
   console.log('Requesting Match data every ${minutes} minutes');
   request('https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/v001?key='+api_key,{json:true},(err,res,body)=>{
   	if(err) return err;
-  	async.each(body['result']['matches'],(item,callback)=>{
-  		addMatches('matches',item,(callback)=>{
-  			console.log('Added : Match '+callback)
-  		})
-  	},(err)=>{
-  		if(err) return console.log(err)
-  		console.log('Updated : Match Details')
-  	})
+  	try{
+	  	async.each(body['result']['matches'],(item,callback)=>{
+	  		addMatches('matches',item,(callback)=>{
+	  			console.log('Added : Match '+callback)
+	  		})
+	  	},(err)=>{
+	  		if(err) return console.log(err)
+	  		console.log('Updated : Match Details')
+	  	})
+	}
+	catch(err){
+		console.log('Unable to add Matches')
+	}
   })
   // do your stuff here
 }, the_interval);

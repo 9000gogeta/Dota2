@@ -5,6 +5,6 @@ Mongodb URI needs to be updated accordingly.
 
 Required packages : package.json
 
-Start nodemon server : npm start dev
+Start nodemon server : npm run dev
 
 Future functionality : Display Match data and Hero/Item Details. 

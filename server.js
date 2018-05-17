@@ -79,6 +79,11 @@ function getNames(callback){
 	})
 }
 
+function fileExists(path,item,extension,callback){
+	var filename = path+item+extension
+
+}
+
 app.get('/', (req,res) => {
 	if(first){
 		first = false;
@@ -115,11 +120,11 @@ app.get('/getImages', (req,res)=>{
 					downloadImg('http://cdn.dota2.com/apps/dota2/images/items/'+item.name+'_lg.png',__dirname+'/public/images/'+item.name+'.png',callback)
 				},(err)=>{
 					if(err) console.log(err)
-					console.log('Updated : Item images')	
+					console.log('Updated : Item images')
 					callback()
 				})
 			}
-		],(err,result)=>{
+		],(err,result,callback)=>{
 			if(err) return console.log(err)
 			res.redirect('/')
 		});

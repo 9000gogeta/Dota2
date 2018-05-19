@@ -1,0 +1,29 @@
+doctype HTML
+html
+	head
+		meta(charset='UTF-8')
+		title Matches
+		link(rel='stylesheet' type='text/css' href='/CSS/matchStyle.css')
+	body
+		each match in matches
+			div(id='match'+match.match_id class='matchContainer')
+				div(id='radiant'+match.match_id class='factionContainer')
+					each player in match.players
+						if player.player_slot < 100
+							div(id='player'+player.account_id class='playerContainer')
+								for hero in heroes
+									if hero.id == player.hero_id
+										- heroName = hero.name
+										- break
+								div(id='heroImageContainer' class='imgContainer')
+									img(src='/images/'+heroName+'.png' class='image')
+				div(id='dire'+match.match_id class='factionContainer')
+					each player in match.players
+						if player.player_slot > 100
+							div(id='player'+player.account_id class='playerContainer')
+								for hero in heroes
+									if hero.id == player.hero_id
+										- heroName = hero.name
+										- break
+								div(id='heroImageContainer' class='imgContainer')
+									img(src='/images/'+heroName+'.png' class='image')

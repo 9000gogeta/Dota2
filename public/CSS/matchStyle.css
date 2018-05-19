@@ -1,0 +1,46 @@
+.matchContainer{
+	padding: 10px;
+	text-align: center;
+	display: block;
+    margin: 0 auto;
+}
+
+.factionContainer{
+	margin: 10px;
+	text-align: center;
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.playerContainer{
+	float:left;
+}
+
+#heroImageContainer{
+	width: 59px;
+	height: 33px;
+}
+
+.imgContainer{
+    margin: 2px;
+    border: 1px solid #ccc;
+	float:left;
+	background: black;
+}
+
+.imgContainer:hover{
+	border: 1px solid #777;
+}
+
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+	max-width:100%;
+	max-height:100%;
+}
+
+body{
+	background-image: url("background_index2.JPG");
+    background-repeat: no-repeat;
+}

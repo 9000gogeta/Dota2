@@ -21,6 +21,9 @@ var first = true;
 var db;
 var mongoDB = process.env.MONGODB_URI || 'mongodb://srini:narayan94@ds263707.mlab.com:63707/dota2';
 
+var heroes = []
+var items = []
+
 mongoClient.connect(mongoDB, (err,database) => {
 	if (err) return console.log(err)
 	db = database.db('dota2')
@@ -64,12 +67,12 @@ function addMatches(colName,query,callback){
 function getNames(callback){
 	async.parallel([
 		(callback)=>{
-			db.collection('heroes').find({},{name:1}).toArray((err,result)=>{
+			db.collection('heroes').find({},{}).toArray((err,result)=>{
 				callback(null,result)
 			})
 		},
 		(callback)=>{
-			db.collection('items').find({},{name:1}).toArray((err,result)=>{
+			db.collection('items').find({},{}).toArray((err,result)=>{
 				callback(null,result)
 			})
 		}
@@ -79,9 +82,15 @@ function getNames(callback){
 	})
 }
 
-function fileExists(path,item,extension,callback){
-	var filename = path+item+extension
 
+function getRecentMatches(query,callback){
+	db.collection('matches').find(query).sort({match_id: 1}).limit(10).toArray((err,result)=>{
+			callback(result)
+	})
+}
+
+var downloadImg = (uri,filename,callback)=>{
+	request(uri).pipe(fs.createWriteStream(filename)).on('close',callback);
 }
 
 app.get('/', (req,res) => {
@@ -92,16 +101,26 @@ app.get('/', (req,res) => {
 	else{
 		getNames((name)=>{
 				res.render('index.pug',{
-					heroes:name[0],
-					items:name[1]
+					heroes: name[0],
+					items: name[1]
 				})
 		})
 	}
 })
 
-var downloadImg = (uri,filename,callback)=>{
-	request(uri).pipe(fs.createWriteStream(filename)).on('close',callback);
-}
+app.get('/matches', (req,res)=>{
+	query = {
+		'lobby_type': req.query.lobbyType? parseInt(req.query.lobbyType) : 0	}
+	getRecentMatches(query,(matches)=>{
+		getNames((name)=>{
+			res.render('match.pug',{
+				matches: matches,
+				heroes: name[0],
+				items: name[1]
+			})
+		})
+	})
+})
 
 app.get('/getImages', (req,res)=>{
 	getNames((name)=>{

@@ -84,7 +84,7 @@ function getNames(callback){
 
 
 function getRecentMatches(query,callback){
-	db.collection('matches').find(query).sort({match_id: 1}).limit(10).toArray((err,result)=>{
+	db.collection('matches').find(query).sort({match_id: 1}).limit(20).toArray((err,result)=>{
 			callback(result)
 	})
 }

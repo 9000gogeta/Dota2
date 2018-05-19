@@ -1,39 +1,48 @@
 body{
 	background-image: url("background_index2.JPG");
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
 }
 
 #itemListContainer{
-	width:701.55px;
+	width:749px;
 }
 
 #heroListContainer{
-	width:650px;
+	width:718px;
+}
+
+.mainContainer{
+	text-align: center;
+	display: block;
+    margin: 0 auto;
+	padding: 20px;
 }
 
 .listContainer{
-	float: left;
+	display: inline-block;
+    margin: 0 auto;
     background: black;
 }
 
-#heroImageContainer{
+.heroImageContainer{
 	width: 59px;
 	height: 33px;
-}
-
-#itemImageContainer{
-	width: 40.77px;
-	height: 33px;
-}
-
-.imgContainer{
-    margin: 2px;
+	margin: 2px;
     border: 1px solid #ccc;
 	float:left;
 	background: black;
 }
 
-.imgContainer:hover{
+.itemImageContainer{
+	width: 40.77px;
+	height: 33px;    
+	margin: 2px;
+    border: 1px solid #ccc;
+	float:left;
+	background: black;
+}
+
+img:hover{
 	border: 1px solid #777;
 }
 

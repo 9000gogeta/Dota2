@@ -1,24 +1,31 @@
 doctype HTML
+
 html
+
 	head
 		meta(charset='UTF-8')
 		title Dota 2 Tracker
 		link(rel='stylesheet' type='text/css' href='/CSS/indexStyle.css')
+
 	body
 		div(id='heroMainContainer' class='mainContainer')
 			div(id='heroListContainer' class='listContainer')
 				each hero in heroes
 					if !hero.name.includes('recipe') && !hero.name.includes('river')
-						div(id='heroImageContainer' class='imgContainer')
+						div(id='Image_'+hero.id class='heroImageContainer')
 							img(src='/images/'+hero.name+'.png' class='image')
+
 			div(id='heroDescription' class='detailContainer')
+
 		div(id='itemMainContainer' class='mainContainer')
 			div(id='itemListContainer' class='listContainer')
 				each item in items
-					if !item.name.includes('recipe') && !item.name.includes('river')
-						div(id='itemImageContainer' class='imgContainer')
+					if !item.name.includes('recipe') && !item.name.includes('river') && item.id<1000
+						div(id='Image_'+item.name class='itemImageContainer')
 							img(src='/images/'+item.name+'.png' class='image')
+
 			div(id='itemDescription' class='detailContainer')
+		
 		form(action='/matches' method='get')
 			input(type='submit' value='Matches')
 		

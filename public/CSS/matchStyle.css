@@ -5,8 +5,16 @@
     margin: 0 auto;
 }
 
+#radiantContainer{
+	background-color: #001a00;
+}
+
+#direContainer{
+	background-color: #330c00;
+}
+
 .factionContainer{
-	margin: 10px;
+	padding: 10px;
 	text-align: center;
 	display: inline-block;
 	margin-left: 20px;
@@ -16,19 +24,16 @@
 	float:left;
 }
 
-#heroImageContainer{
+.heroImageContainer{
 	width: 59px;
 	height: 33px;
-}
-
-.imgContainer{
-    margin: 2px;
+	margin: 2px;
     border: 1px solid #ccc;
 	float:left;
 	background: black;
 }
 
-.imgContainer:hover{
+img:hover{
 	border: 1px solid #777;
 }
 
@@ -42,5 +47,5 @@ img{
 
 body{
 	background-image: url("background_index2.JPG");
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
 }
